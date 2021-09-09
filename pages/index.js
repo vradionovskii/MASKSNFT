@@ -1,4 +1,4 @@
-import ToggleGroup from "../components/ToggleGroup";
+import ButtonCluster from "../components/ButtonCluster";
 import Layout from "../components/layout";
 
 const seo = {
@@ -14,8 +14,8 @@ export default function Index() {
   return (
     <Layout seo={seo}>
       <section id="hero-container">
-        <div id="hero" className="">
-          <ToggleGroup />
+        <div id="hero" className="relative">
+          <ButtonCluster />
         </div>
       </section>
     </Layout>
