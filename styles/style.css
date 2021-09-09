@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: greyscale;
+  text-rendering: optimizeLegibility;
+}
+
+:root {
+  --main-bg-color: #d2fd7e;
+}
+
+::selection {
+  background: #333;
+  color: #fff;
+  text-shadow: none;
+}
+
+body {
+  background-color: #000;
+}
+
+#hero-container {
+  padding: 0.3125rem;
+  height: 100vh;
+}
+
+#hero {
+  border-radius: 1.5rem;
+  height: 100%;
+  background-color: var(--main-bg-color);
+  transition-property: background-color;
+  transition-duration: 200ms;
+  background-image: url("/images/mssft.svg");
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: 3.944rem;
+}
+.toggle-group {
+  border-radius: 1.5rem;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+@font-face {
+  font-family: "TTSquaresCondensed";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/TTSquaresCondensed-Regular.woff2") format("woff2"),
+    url("../fonts/TTSquaresCondensed-Regular.woff") format("woff"),
+    url("../fonts/TTSquaresCondensed-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "PexelGrotesk";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/PexelGrotesk-Regular.woff2") format("woff2"),
+    url("../fonts/PexelGrotesk-Regular.woff") format("woff"),
+    url("../fonts/PexelGrotesk-Regular.ttf") format("truetype");
+}
+
+@media (min-width: 768px) {
+  #hero {
+    background-image: url("/images/masksnft.svg");
+    background-position: top;
+    background-size: 100%;
+  }
+}
