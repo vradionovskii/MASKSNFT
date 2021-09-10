@@ -47,11 +47,25 @@ function CountDown({ data }) {
 
   return (
     <div className="">
-      <p className="text-[rgba(0,0,0,0.6)] text-xs pb-1">Minimum bid</p>
-      <pre className="font-sans pb-[0.375rem] leading-none">{`${h}   :   ${m}   :   ${s}`}</pre>
-      <pre className="font-sans text-[rgba(0,0,0,0.4)] text-[0.625rem]">
-        {`hours         minutes    seconds`}
-      </pre>
+      <p className="text-[rgba(0,0,0,0.6)] text-xs pb-1">Auction ending in</p>
+      <div className="grid w-full grid-cols-3">
+        {[
+          { text: "hours", time: h },
+          { text: "minutes", time: m },
+          { text: "seconds", time: s },
+        ].map(({ text, time }, i) => (
+          <div
+            key={text}
+            className="flex w-full flex-wrap font-sans pb-[0.375rem]"
+          >
+            <span className="w-1/2">{time}</span>
+            <span className="w-1/2 text-center">{i !== 2 && ":"}</span>
+            <span className="w-full font-sans text-[rgba(0,0,0,0.4)] text-[0.625rem]">
+              {text}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
