@@ -14,8 +14,11 @@ const seo = {
 export default function Index() {
   return (
     <Layout seo={seo}>
-      <section id="hero-container">
-        <div id="hero" className="relative">
+      <section id="hero-container" className="min-h-screen p-[0.3125rem]">
+        <div
+          id="hero"
+          className="relative transition-colors duration-200 bg-no-repeat rounded-3xl"
+        >
           <ButtonCluster />
           <Slider />
         </div>

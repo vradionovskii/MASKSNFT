@@ -24,12 +24,12 @@ function HeartAndInfo({ likes }) {
 }
 
 function CountDown({ data }) {
-  const [[h, m, s], setTime] = useState([0, 0, 0]);
-
+  const [[h, m, s], setTime] = useState(["00", "00", "00"]);
+  const fixedNow = new Date().getTime();
   useEffect(() => {
     let interval = setInterval(function () {
       let now = new Date().getTime();
-      let distance = data.endsIn - now;
+      let distance = fixedNow + data.endsIn - now;
 
       let hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -50,7 +50,7 @@ function CountDown({ data }) {
       <p className="text-[rgba(0,0,0,0.6)] text-xs pb-1">Minimum bid</p>
       <pre className="font-sans pb-[0.375rem] leading-none">{`${h}   :   ${m}   :   ${s}`}</pre>
       <pre className="font-sans text-[rgba(0,0,0,0.4)] text-[0.625rem]">
-        {`hours        minutes    seconds`}
+        {`hours         minutes    seconds`}
       </pre>
     </div>
   );

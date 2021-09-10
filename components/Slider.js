@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MaskInfo from "./MaskInfo";
+import SliderNav from "./SliderNav";
 
 const slides = [
   {
@@ -11,56 +12,61 @@ const slides = [
     likes: "37",
     minBidETH: "10.23",
     minBidUSD: "720",
-    endsIn: "1631350825000",
+    endsIn: 73656009,
   },
   {
     image: "/images/slide-2.jpg",
     icon: "/images/icon-2.png",
-    nickname: "cameron",
-    title: "Sometimes Typhoons Come",
-    likes: "37",
-    minBidETH: "10.23",
-    minBidUSD: "720",
-    endsIn: "1631350825000",
+    nickname: "chad",
+    title: "Gas Grill Burners Getting To Know You",
+    likes: "73",
+    minBidETH: "1.4",
+    minBidUSD: "1240",
+    endsIn: 83235013,
   },
   {
     image: "/images/slide-3.jpg",
     icon: "/images/icon-3.png",
-    nickname: "cameron",
-    title: "Sometimes Typhoons Come",
-    likes: "37",
-    minBidETH: "10.23",
-    minBidUSD: "720",
-    endsIn: "1631350825000",
+    nickname: "gala",
+    title: "Emu Oil For Anti Wrinkle",
+    likes: "1337",
+    minBidETH: "100.23",
+    minBidUSD: "7200",
+    endsIn: 45549849,
   },
   {
     image: "/images/slide-4.jpg",
     icon: "/images/icon-4.png",
-    nickname: "cameron",
-    title: "Sometimes Typhoons Come",
-    likes: "37",
-    minBidETH: "10.23",
-    minBidUSD: "720",
-    endsIn: "1631350825000",
+    nickname: "homer",
+    title: "Ipsum Lorem Dolorem",
+    likes: "12",
+    minBidETH: "0.1",
+    minBidUSD: "200",
+    endsIn: 33781192,
   },
 ];
+
+const transition = {
+  duration: 0.5,
+  ease: [0, 0.55, 0.45, 1],
+};
 
 const variants = {
   enter: {
     transition: {
-      duration: 0.2,
+      ...transition,
     },
     opacity: 0,
   },
   center: {
     transition: {
-      duration: 0.2,
+      ...transition,
     },
     opacity: 1,
   },
   exit: {
     transition: {
-      duration: 0.2,
+      ...transition,
     },
     opacity: 0,
   },
@@ -90,59 +96,6 @@ export const Slider = () => {
     interval.current = setInterval(() => getInterval(), SLIDE_DURATION);
   }
 
-  function SliderNav({ className }) {
-    return (
-      <div
-        className={`${className} relative z-50 space-x-6 md:space-x-0 md:space-y-4 md:flex-col justify-center items-center`}
-      >
-        {slides.map(({ icon, title }, i) =>
-          i !== slideIndex ? (
-            <button
-              onClick={() => {
-                updateSlide(i);
-              }}
-              className="w-10 h-10"
-              key={icon}
-            >
-              <img src={icon} alt={title} className="w-10 h-10 rounded-full" />
-            </button>
-          ) : (
-            <div
-              key={icon}
-              className="relative flex items-center justify-center w-[4.5rem] h-[4.5rem]"
-            >
-              <button onClick={() => updateSlide(i)} className="w-14 h-14">
-                <img
-                  src={icon}
-                  alt={title}
-                  className="rounded-full w-14 h-14"
-                />
-              </button>
-              <svg
-                viewBox="0 0 92 92"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="absolute inset-0 w-full h-full rotate-180"
-              >
-                <motion.path
-                  d="M1,46a45,45 0 1,0 90,0a45,45 0 1,0 -90,0"
-                  stroke="#000"
-                  strokeWidth="2"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{
-                    duration: SLIDE_DURATION / 1000,
-                  }}
-                  exit={false}
-                />
-              </svg>
-            </div>
-          )
-        )}
-      </div>
-    );
-  }
-
   useEffect(() => {
     interval.current = setInterval(() => getInterval(), SLIDE_DURATION);
     return () => clearInterval(interval.current);
@@ -153,7 +106,13 @@ export const Slider = () => {
       style={{ minHeight: "calc(100vh - 0.6250rem)" }}
       className="inset-0 flex items-center max-w-sm px-4 m-auto md:max-w-none"
     >
-      <SliderNav className="hidden md:flex" />
+      <SliderNav
+        SLIDE_DURATION={SLIDE_DURATION}
+        slides={slides}
+        slideIndex={slideIndex}
+        onClick={updateSlide}
+        className="hidden md:flex"
+      />
       <AnimatePresence exitBeforeEnter>
         <motion.div
           key={page}
@@ -172,7 +131,13 @@ export const Slider = () => {
               />
             </div>
           </div>
-          <SliderNav className="flex py-6 md:hidden" />
+          <SliderNav
+            SLIDE_DURATION={SLIDE_DURATION}
+            slides={slides}
+            slideIndex={slideIndex}
+            onClick={updateSlide}
+            className="flex py-6 md:hidden"
+          />
           <div>
             <MaskInfo data={slides[slideIndex]} />
           </div>
