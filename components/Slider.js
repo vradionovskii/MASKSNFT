@@ -94,7 +94,10 @@ export const Slider = () => {
   }
 
   return (
-    <div className="inset-0 flex items-center max-w-sm min-h-screen px-4 m-auto md:max-w-none">
+    <div
+      style={{ minHeight: "calc(100vh - 0.6250rem)" }}
+      className="inset-0 flex items-center max-w-sm px-4 m-auto md:max-w-none"
+    >
       <SliderNav className="hidden md:flex" />
       <AnimatePresence exitBeforeEnter initial={false}>
         <motion.div
@@ -103,7 +106,7 @@ export const Slider = () => {
           initial="enter"
           animate="center"
           exit="exit"
-          className="w-full h-full mt-20 mb-6 md:items-center md:space-x-4 md:justify-evenly md:flex md:mt-0"
+          className="w-full h-full mt-20 mb-6 md:items-center md:space-x-4 md:justify-evenly md:flex md:my-0"
         >
           <div className="relative w-full max-w-sm 2xl:max-w-md">
             <div className="relative block overflow-hidden w-full  pb-[143.1%]">

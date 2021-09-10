@@ -29,7 +29,6 @@ body {
 
 #hero {
   border-radius: 1.5rem;
-  min-height: 100vh;
   background-color: var(--main-bg-color);
   transition-property: background-color;
   transition-duration: 200ms;
