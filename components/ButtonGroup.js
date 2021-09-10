@@ -5,7 +5,10 @@ export default function ButtonGroup() {
         <button className="button button-outline">Connect Wallet</button>
         <button className="button button-solid">Add Mask</button>
       </div>
-      <button className="w-10 h-10 text-center transition-opacity duration-200 bg-black rounded-full hover:opacity-70 md:hidden">
+      <button
+        aria-label="+"
+        className="w-10 h-10 text-center transition-opacity duration-200 bg-black rounded-full hover:opacity-70 md:hidden"
+      >
         <svg
           className="w-[0.875rem] h-[0.875rem] m-auto"
           viewBox="0 0 14 14"

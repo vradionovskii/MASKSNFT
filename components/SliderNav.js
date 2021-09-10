@@ -13,7 +13,12 @@ export default function SliderNav({
     >
       {slides.map(({ icon, title }, i) =>
         i !== slideIndex ? (
-          <button onClick={() => onClick(i)} className="w-10 h-10" key={icon}>
+          <button
+            aria-label={title}
+            onClick={() => onClick(i)}
+            className="w-10 h-10"
+            key={icon}
+          >
             <img src={icon} alt={title} className="w-10 h-10 rounded-full" />
           </button>
         ) : (
@@ -21,7 +26,11 @@ export default function SliderNav({
             key={icon}
             className="relative flex items-center justify-center w-[4.5rem] h-[4.5rem]"
           >
-            <button onClick={() => onClick(i)} className="w-14 h-14">
+            <button
+              aria-label={title}
+              onClick={() => onClick(i)}
+              className="w-14 h-14"
+            >
               <img src={icon} alt={title} className="rounded-full w-14 h-14" />
             </button>
             <svg
