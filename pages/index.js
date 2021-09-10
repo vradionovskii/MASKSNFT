@@ -3,7 +3,7 @@ import Layout from "../components/layout";
 import { Slider } from "../components/Slider";
 
 const seo = {
-  URL: "",
+  URL: "https://angry-clarke-3426e8.netlify.app",
   siteTitle: "MASKSNFT",
   siteDescription: "MASKSNFT",
   socialCover: "/images/social-cover.jpg",
