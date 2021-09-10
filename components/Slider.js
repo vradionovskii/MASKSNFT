@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MaskInfo from "./MaskInfo";
 
@@ -68,30 +68,85 @@ const variants = {
 
 export const Slider = () => {
   const [page, setPage] = useState(0);
+  const countRef = useRef(page);
+  const interval = useRef(null);
   const slideIndex = wrap(0, slides.length, page);
-
-  const paginate = (i) => {
-    setPage(i);
-  };
+  const SLIDE_DURATION = 6000;
 
   function wrap(min, max, v) {
     var rangeSize = max - min;
     return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
   }
 
+  function getInterval() {
+    countRef.current += 1;
+    setPage(countRef.current);
+  }
+
+  function updateSlide(i) {
+    setPage(i);
+    clearInterval(interval.current);
+    countRef.current = wrap(0, slides.length, i);
+    interval.current = setInterval(() => getInterval(), SLIDE_DURATION);
+  }
+
   function SliderNav({ className }) {
     return (
       <div
-        className={`${className} relative z-50 space-x-6 md:space-x-0 md:space-y-4 md:flex-col`}
+        className={`${className} relative z-50 space-x-6 md:space-x-0 md:space-y-4 md:flex-col justify-center items-center`}
       >
-        {slides.map(({ icon, title }, i) => (
-          <button onClick={() => paginate(i)} className="w-10 h-10" key={icon}>
-            <img src={icon} alt={title} className="w-10 h-10 rounded-full" />
-          </button>
-        ))}
+        {slides.map(({ icon, title }, i) =>
+          i !== slideIndex ? (
+            <button
+              onClick={() => {
+                updateSlide(i);
+              }}
+              className="w-10 h-10"
+              key={icon}
+            >
+              <img src={icon} alt={title} className="w-10 h-10 rounded-full" />
+            </button>
+          ) : (
+            <div
+              key={icon}
+              className="relative flex items-center justify-center w-[4.5rem] h-[4.5rem]"
+            >
+              <button onClick={() => updateSlide(i)} className="w-14 h-14">
+                <img
+                  src={icon}
+                  alt={title}
+                  className="rounded-full w-14 h-14"
+                />
+              </button>
+              <svg
+                viewBox="0 0 92 92"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="absolute inset-0 w-full h-full rotate-180"
+              >
+                <motion.path
+                  d="M1,46a45,45 0 1,0 90,0a45,45 0 1,0 -90,0"
+                  stroke="#000"
+                  strokeWidth="2"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{
+                    duration: SLIDE_DURATION / 1000,
+                  }}
+                  exit={false}
+                />
+              </svg>
+            </div>
+          )
+        )}
       </div>
     );
   }
+
+  useEffect(() => {
+    interval.current = setInterval(() => getInterval(), SLIDE_DURATION);
+    return () => clearInterval(interval.current);
+  }, []);
 
   return (
     <div
@@ -99,7 +154,7 @@ export const Slider = () => {
       className="inset-0 flex items-center max-w-sm px-4 m-auto md:max-w-none"
     >
       <SliderNav className="hidden md:flex" />
-      <AnimatePresence exitBeforeEnter initial={false}>
+      <AnimatePresence exitBeforeEnter>
         <motion.div
           key={page}
           variants={variants}
@@ -117,8 +172,8 @@ export const Slider = () => {
               />
             </div>
           </div>
-          <SliderNav className="py-6 md:hidden" />
-          <div className="">
+          <SliderNav className="flex py-6 md:hidden" />
+          <div>
             <MaskInfo data={slides[slideIndex]} />
           </div>
         </motion.div>
