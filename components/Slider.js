@@ -77,7 +77,7 @@ export const Slider = () => {
   const countRef = useRef(page);
   const interval = useRef(null);
   const slideIndex = wrap(0, slides.length, page);
-  const SLIDE_DURATION = 6000;
+  const SLIDE_DURATION = 10000;
 
   function wrap(min, max, v) {
     var rangeSize = max - min;

@@ -121,7 +121,7 @@ export default function SEO({ seo }) {
           type="image/x-icon"
           href="/favicon/favicon-144x144.png"
         />
-        <meta name="msapplication-TileColor" content="#e3000e" />
+        <meta name="msapplication-TileColor" content="#d2fd7e" />
         <meta
           name="msapplication-TileImage"
           content="/favicon/favicon-144x144.png"
@@ -131,11 +131,11 @@ export default function SEO({ seo }) {
           content="/favicon/browserconfig.xml"
         />
         <link rel="manifest" href="/favicon/manifest.json" />
-        <meta name="theme-color" content="#e3000e" />
+        <meta name="theme-color" content="#d2fd7e" />
         <link
           rel="mask-icon"
           href="/favicon/safari-pinned-tab.svg"
-          color="#e3000e"
+          color="#d2fd7e"
         />
       </Head>
     </>

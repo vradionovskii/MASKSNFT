@@ -4,11 +4,11 @@ import { Slider } from "../components/Slider";
 
 const seo = {
   URL: "",
-  siteTitle: "",
-  siteDescription: "",
-  socialCover: "images/",
-  keywords: "",
-  title: "",
+  siteTitle: "MASKSNFT",
+  siteDescription: "MASKSNFT",
+  socialCover: "/images/social-cover.jpg",
+  keywords: "MASKSNFT",
+  title: "Home",
 };
 
 export default function Index() {
